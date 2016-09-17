@@ -5,4 +5,22 @@ settings = {
   player = {
     baseSpeed = 100,
   },
+  inventory = {
+    tileSize = 64,
+    width = 10,
+    height = 10,
+    border = 1,
+    contents = {
+      {"sword", nil, nil, nil, nil, nil, nil, nil, nil, nil},
+      {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
+      {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
+      {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
+      {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
+      {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
+      {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
+      {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
+      {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
+      {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
+    },
+  },
 }

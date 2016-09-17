@@ -12,6 +12,13 @@ player = {
 }
 
 function player.update(dt)
+    if not dead then
+        player.move(dt)
+    end
+end
+
+function player.move(dt)
+    moveSpeed = settings.player.baseSpeed --TODO: replace with value calculated from speed/agility stat #craig
     moveX = 0
     moveY = 0
     if love.keyboard.isDown("d") then
@@ -33,8 +40,8 @@ end
 function player.move(moveX, moveY, dt)
     moveSpeed = settings.player.baseSpeed --TODO: replace with value calculated from speed/agility stat #craig
     if moveX * moveY ~= 0 then
-        player.x = player.x + moveX * 1.41 * moveSpeed * dt
-        player.y = player.y + moveY * 1.41 * moveSpeed * dt
+        player.x = player.x + moveX * 0.707 * moveSpeed * dt
+        player.y = player.y + moveY * 0.707 * moveSpeed * dt
     else
         player.x = player.x + moveX * moveSpeed * dt
         player.y = player.y + moveY * moveSpeed * dt
@@ -43,7 +50,7 @@ end
 
 function player.damage(damage)
     player.health = player.health - damage
-    if player.health < 0 then
+    if player.health <= 0 then
         player.health = 0
         player.dead = true
     end
@@ -54,6 +61,10 @@ function player.level()
 end
 
 function player.draw()
+    if not player.dead then
+        love.graphics.setColor(0, 255, 0)
+        love.graphics.rectangle('fill', player.x, player.y, player.size, player.size)
+    end
     love.graphics.setColor(0, 255, 0)
     love.graphics.rectangle('fill', player.x, player.y, player.size, player.size)
 end
