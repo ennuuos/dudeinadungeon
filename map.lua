@@ -1,4 +1,4 @@
-map{
+map = {
 }
 
 function map.init()
