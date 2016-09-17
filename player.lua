@@ -18,6 +18,7 @@ function player.update(dt)
         if player.weaponCooldown > 0 then
             player.weaponCooldown = player.weaponCooldown - dt
         end
+        player.pickupItems()
     end
     actor.collideWithMap(player, map.testMap)
 end
@@ -65,6 +66,30 @@ end
 
 function player.level()
     --TODO: player levelling algorithm
+end
+
+function player.pickupItems()
+    for i = 1, #items do
+        a = {
+            x = player.x,
+            y = player.y,
+            width = player.size,
+            height = player.size
+        }
+        b = {
+            x = items[i].x,
+            y = items[i].y,
+            width = items.size,
+            height = items.size
+        }
+        if util.intersect(a, b) then
+            x, y = inventory.nextSlot()
+            if x ~= false then
+                settings.inventory.contents[x][y] = items[i].type
+                items.destroy(i)
+            end
+        end
+    end
 end
 
 function player.draw()

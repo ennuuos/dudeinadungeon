@@ -3,6 +3,8 @@ items = {
       love.graphics.newImage("assets/sword.png"),
       cooldown = 0.5
   },
+  size = 10,
+  color = {r = 0, g = 255, b = 255}
 }
 
 items["sword"].attack = function(x, y)
@@ -22,5 +24,28 @@ items["sword"].attack = function(x, y)
                 enemy.damage(i, damage)
             end
         end
+    end
+end
+
+function items.new(itemType, xPos, yPos)
+    i = #items + 1
+    items[i] = {
+        type = itemType,
+        x = xPos,
+        y = yPos
+    }
+end
+
+function items.destroy(i)
+    table.remove(items, i)
+end
+
+function items.draw(i)
+    love.graphics.setColor(items.color.r, items.color.g, items.color.b)
+    love.graphics.rectangle("fill", items[i].x, items[i].y, items.size, items.size)
+end
+function items.drawAll()
+    for i = 1, #items do
+        items.draw(i)
     end
 end
