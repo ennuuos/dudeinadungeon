@@ -27,8 +27,8 @@ function ui.mousepressed(x, y, button)
     x >= ui.statXOff and x <= ui.statXOff + ui.statWidth and
     y >= ui.statYOff and y <= ui.statYOff + ui.statHeight then
       ui.statDrag = true
-      ui.statMouseX = x - ui.statMouseX
-      ui.statMouseY = y - ui.statMouseY
+      ui.statMouseX = x - ui.statXOff
+      ui.statMouseY = y - ui.statYOff
     end
   end
 end
