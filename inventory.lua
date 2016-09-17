@@ -69,3 +69,14 @@ function inventory.draw()
     end
   end
 end
+
+function inventory.nextSlot()
+    for x = 1, settings.inventory.width do
+        for y = 1, settings.inventory.height do
+            if settings.inventory.contents[x][y] == nil then
+                return x, y
+            end
+        end
+    end
+    return false, false
+end

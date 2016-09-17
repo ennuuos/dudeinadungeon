@@ -6,12 +6,14 @@ require('enemy')
 require('map')
 require('inventory')
 require('ui')
+require('items')
 
 debugMain = {"temp"}
 
 function love.load()
   map.init()
   enemy.new('dumb', 100, 100)
+  items.new('sword', 180, 100)
 end
 
 function love.update(dt)
@@ -33,6 +35,8 @@ function love.draw()
       love.graphics.arc(arcQueue[5], arcQueue[6], arcQueue[7], arcQueue[8], arcQueue[9], arcQueue[10])
       arcQueue = {}
   end
+  items.drawAll()
+  enemy.drawAll()
   player.draw()
   if inventory.display then
     inventory.draw()
@@ -40,7 +44,6 @@ function love.draw()
   if ui.statDisplay then
     ui.drawStatusScreen()
   end
-  enemy.drawAll()
   util.debugTable(debugMain)
 end
 

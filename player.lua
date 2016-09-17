@@ -8,12 +8,17 @@ player = {
     x = 205,
     y = 205,
     size = 40,
+    weaponCooldown = 0
     --TODO: player stats #craig
 }
 
 function player.update(dt)
     if not dead then
         player.move(dt)
+        if player.weaponCooldown > 0 then
+            player.weaponCooldown = player.weaponCooldown - dt
+        end
+        player.pickupItems()
     end
     if player.XP >= player.XPToLevel then
       player.level()
@@ -55,8 +60,11 @@ function player.damage(damage)
 end
 
 function player.attack(x, y)
-    --TODO: replace this with attack for player's equipped weapon
-    items["sword"].attack(x,y)
+    if player.weaponCooldown <= 0  and not player.dead then
+        --TODO: replace this with attack for player's equipped weapon
+        items["sword"].attack(x,y)
+        player.weaponCooldown = items["sword"].cooldown
+    end
 end
 
 function player.level()
@@ -64,6 +72,30 @@ function player.level()
   player.level = player.level + 1
   --TODO: edit the leveling algorithm
   player.XPToLevel = (100 * 1.5) * player.level
+end
+
+function player.pickupItems()
+    for i = 1, #items do
+        a = {
+            x = player.x,
+            y = player.y,
+            width = player.size,
+            height = player.size
+        }
+        b = {
+            x = items[i].x,
+            y = items[i].y,
+            width = items.size,
+            height = items.size
+        }
+        if util.intersect(a, b) then
+            x, y = inventory.nextSlot()
+            if x ~= false then
+                settings.inventory.contents[x][y] = items[i].type
+                items.destroy(i)
+            end
+        end
+    end
 end
 
 function player.draw()
