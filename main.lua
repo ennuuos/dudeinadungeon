@@ -15,5 +15,6 @@ function love.update(dt)
 end
 
 function love.draw()
+  map.draw(testMap, 6, 6)
   player.draw()
 end

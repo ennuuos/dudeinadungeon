@@ -1,13 +1,13 @@
 player = {
-    dead = false
-    health = 100
-    maxHealth = 100
-    level = 1
-    XP = 0
-    XPToLevel = 100
-    x = 0
-    y = 0
-    size = 40
+    dead = false,
+    health = 100,
+    maxHealth = 100,
+    level = 1,
+    XP = 0,
+    XPToLevel = 100,
+    x = 0,
+    y = 0,
+    size = 40,
     --TODO: player stats #craig
 }
 
@@ -30,7 +30,7 @@ function player.update(dt)
 end
 
 function player.move(moveX, moveY, dt)
-    moveSpeed = 10 --TODO: replace with value calculated from speed/agility stat #craig
+    moveSpeed = settings.player.baseSpeed --TODO: replace with value calculated from speed/agility stat #craig
     if moveX * moveY ~= 0 then
         player.x = player.x + moveX * 1.41 * moveSpeed * dt
         player.y = player.y + moveY * 1.41 * moveSpeed * dt

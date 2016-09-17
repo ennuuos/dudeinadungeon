@@ -2,14 +2,14 @@ map = {
 }
 
 function map.init()
-  testMap = {{ true,  true,  true,  true,  true, true},
-             { true, false, false, false, false, true},
-             { true, false, false, false, false, true},
-             { true, false, false, false, false, true},
-             { true, false, false, false, false, true},
-             { true,  true,  true,  true,  true, true}
+  testMap = {
+    { true,  true,  true,  true,  true, true},
+    { true, false, false, false, false, true},
+    { true, false, false, false, false, true},
+    { true, false, false, false, false, true},
+    { true, false, false, false, false, true},
+    { true,  true,  true,  true,  true, true}
   }
-  draw(testMap, 6, 6)
 end
 
 function map.draw(map, width, height)
@@ -20,7 +20,7 @@ function map.draw(map, width, height)
       else
         love.graphics.setColor(200, 200, 200, 255)
       end
-      love.graphics.rectangle("fill", x * settings.grid.size, y * settings.grid.size, width, height)
+      love.graphics.rectangle("fill", x * settings.grid.size, y * settings.grid.size, settings.grid.size, settings.grid.size)
     end
   end
 end
