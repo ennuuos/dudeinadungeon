@@ -55,5 +55,5 @@ function enemy.drawAll()
 end
 
 function enemy.center(i)
-    return enemy[i].x + enemy.types[enemy[i].type].size / 2, enemy[i].y + enemy.types[enemy[i].type]
+    return enemy[i].x + enemy.types[enemy[i].type].size / 2, enemy[i].y + enemy.types[enemy[i].type].size / 2
 end

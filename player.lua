@@ -51,6 +51,11 @@ function player.damage(damage)
     end
 end
 
+function player.attack(x, y)
+    --TODO: replace this with attack for player's equipped weapon
+    items["sword"].attack(x,y)
+end
+
 function player.level()
     --TODO: player levelling algorithm
 end
@@ -62,4 +67,8 @@ function player.draw()
     end
     love.graphics.setColor(0, 255, 0)
     love.graphics.rectangle('fill', player.x, player.y, player.size, player.size)
+end
+
+function player.center()
+    return player.x + player.size / 2, player.y + player.size / 2
 end

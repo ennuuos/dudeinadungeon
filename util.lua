@@ -25,4 +25,19 @@ util = {
       y = y + 12
     end
   end,
+  distance = function (ax, ay, bx, by)
+    return math.sqrt((ax - bx)^2 + (ay- by)^2)
+  end,
+  angle = function (ax, ay, bx, by) --angle of b from a, in radians
+    if bx < ax then
+        atan = math.atan((by - ay)/(bx - ax))
+        if atan <= 0 then
+            return atan - 3.14
+        else
+            return atan + 3.14
+        end
+    else
+        return math.atan((by - ay)/(bx - ax))
+    end
+  end
 }
