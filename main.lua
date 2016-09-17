@@ -6,6 +6,8 @@ require('map')
 --TODO: Create map.lua
 --TODO: create player.lua
 
+debugMain = {"temp"}
+
 function love.load()
   map.init()
 end
@@ -15,6 +17,7 @@ function love.update(dt)
 end
 
 function love.draw()
-  map.draw(testMap, 6, 6)
+  map.draw(map.testMap, 6, 6)
   player.draw()
+  util.debugTable(debugMain)
 end

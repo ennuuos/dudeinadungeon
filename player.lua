@@ -5,8 +5,8 @@ player = {
     level = 1,
     XP = 0,
     XPToLevel = 100,
-    x = 0,
-    y = 0,
+    x = 205,
+    y = 205,
     size = 40,
     --TODO: player stats #craig
 }
@@ -27,6 +27,7 @@ function player.update(dt)
         moveY = moveY - 1
     end
     player.move(moveX, moveY, dt)
+    tx, ty = actor.collideWithMap(player, map.testMap)
 end
 
 function player.move(moveX, moveY, dt)
@@ -54,5 +55,5 @@ end
 
 function player.draw()
     love.graphics.setColor(0, 255, 0)
-    love.graphics.rectangle('fill', player.x + player.size / 2, player.y + player.size / 2, player.size, player.size)
+    love.graphics.rectangle('fill', player.x, player.y, player.size, player.size)
 end
