@@ -16,6 +16,8 @@ end
 
 function love.update(dt)
   player.update(dt)
+  inventory.update(dt)
+  ui.update(dt)
 end
 
 function love.keypressed(key)
@@ -45,4 +47,11 @@ end
 
 function love.mousepressed(x, y, button, istouch)
     player.attack(x, y)
+    inventory.mousepressed(x, y, button)
+    ui.mousepressed(x, y, button)
+end
+
+function love.mousereleased(x, y, button)
+  inventory.mousereleased(x, y, button)
+  ui.mousereleased(x, y, button)
 end

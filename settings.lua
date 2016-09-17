@@ -5,6 +5,10 @@ settings = {
           left = "a",
           down = "s",
           right = "d"
+      },
+      ui = {
+        inv = "e",
+        stats = "q"
       }
   },
   grid = {
@@ -13,11 +17,7 @@ settings = {
   player = {
     baseSpeed = 100,
   },
-  status = {
-    toggle = "q",
-  },
   inventory = {
-    toggle = "e",
     tileSize = 32,
     width = 10,
     height = 10,

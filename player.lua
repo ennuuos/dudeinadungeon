@@ -15,6 +15,9 @@ function player.update(dt)
     if not dead then
         player.move(dt)
     end
+    if player.XP >= player.XPToLevel then
+      player.level()
+    end
     actor.collideWithMap(player, map.testMap)
 end
 
@@ -57,7 +60,10 @@ function player.attack(x, y)
 end
 
 function player.level()
-    --TODO: player levelling algorithm
+  player.XP = player.XP - player.XPToLevel
+  player.level = player.level + 1
+  --TODO: edit the leveling algorithm
+  player.XPToLevel = (100 * 1.5) * player.level
 end
 
 function player.draw()

@@ -1,10 +1,15 @@
 require('items')
 inventory = {
-  display = false
+  display = false,
+  xOff = 0,
+  yOff = 0,
+  dragging = false,
+  mouseXOff = 0,
+  mouseYOff = 0
 }
 
 function inventory.keypressed(key)
-  if key == settings.inventory.toggle then
+  if key == settings.controls.ui.inv then
     if inventory.display then
       inventory.display = false
     else
@@ -13,8 +18,29 @@ function inventory.keypressed(key)
   end
 end
 
-function inventory.update()
+function inventory.mousepressed(x, y, button)
+  if button == 1 and inventory.display then
+    if x >= inventory.xOff and x <= settings.inventory.height * (settings.inventory.tileSize + settings.inventory.border) + inventory.xOff
+    and y >= inventory.yOff and y <= settings.inventory.width * (settings.inventory.tileSize + settings.inventory.border) + inventory.yOff then
+      inventory.dragging = true
+      inventory.mouseXOff = x - inventory.xOff
+      inventory.mouseYOff = y - inventory.yOff
+    end
+  end
+end
+
+function inventory.mousereleased(x, y, button)
+  if button == 1 then
+    inventory.dragging = false
+  end
+end
+
+function inventory.update(dt)
   --TODO: Make items interactable in inventory
+  if inventory.dragging then
+    inventory.xOff = love.mouse.getX() - inventory.mouseXOff
+    inventory.yOff = love.mouse.getY() - inventory.mouseYOff
+  end
 end
 
 function inventory.draw()
@@ -24,8 +50,8 @@ function inventory.draw()
         love.graphics.setColor(255, 255, 255)
         love.graphics.draw(
           items[settings.inventory.contents[x][y]][1],
-          y * (settings.inventory.tileSize + settings.inventory.border),
-          x * (settings.inventory.tileSize + settings.inventory.border),
+          (y - 1) * (settings.inventory.tileSize + settings.inventory.border) + inventory.xOff,
+          (x - 1) * (settings.inventory.tileSize + settings.inventory.border) + inventory.yOff,
           0,
           0.5,
           0.5
@@ -34,8 +60,8 @@ function inventory.draw()
         love.graphics.setColor(160, 107, 0)
         love.graphics.rectangle(
           "fill",
-          y * (settings.inventory.tileSize + settings.inventory.border),
-          x * (settings.inventory.tileSize + settings.inventory.border),
+          (y - 1) * (settings.inventory.tileSize + settings.inventory.border) + inventory.xOff,
+          (x - 1) * (settings.inventory.tileSize + settings.inventory.border) + inventory.yOff,
           settings.inventory.tileSize,
           settings.inventory.tileSize
         )
