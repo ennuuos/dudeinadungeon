@@ -1,3 +1,3 @@
 items = {
-  ["sword"] = {image = love.graphics.newImage("")},
+  ["sword"] = {love.graphics.newImage("assets/sword.png")},
 }
