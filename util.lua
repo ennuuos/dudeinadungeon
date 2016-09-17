@@ -15,6 +15,14 @@ util = {
         si = i
       end
     end
-    return i
+    return si
+  end,
+  debugTable = function(t)
+    y = 0
+    for k, v in pairs(t) do
+      love.graphics.setColor(200, 200, 0, 255)
+      love.graphics.print(k.." : "..v, 10, y)
+      y = y + 12
+    end
   end,
 }

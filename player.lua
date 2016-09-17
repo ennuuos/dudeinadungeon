@@ -5,8 +5,8 @@ player = {
     level = 1,
     XP = 0,
     XPToLevel = 100,
-    x = 0,
-    y = 0,
+    x = 205,
+    y = 205,
     size = 40,
     --TODO: player stats #craig
 }
@@ -33,6 +33,12 @@ function player.move(dt)
     if love.keyboard.isDown("w") then
         moveY = moveY - 1
     end
+    player.move(moveX, moveY, dt)
+    tx, ty = actor.collideWithMap(player, map.testMap)
+end
+
+function player.move(moveX, moveY, dt)
+    moveSpeed = settings.player.baseSpeed --TODO: replace with value calculated from speed/agility stat #craig
     if moveX * moveY ~= 0 then
         player.x = player.x + moveX * 0.707 * moveSpeed * dt
         player.y = player.y + moveY * 0.707 * moveSpeed * dt
@@ -59,4 +65,6 @@ function player.draw()
         love.graphics.setColor(0, 255, 0)
         love.graphics.rectangle('fill', player.x, player.y, player.size, player.size)
     end
+    love.graphics.setColor(0, 255, 0)
+    love.graphics.rectangle('fill', player.x, player.y, player.size, player.size)
 end

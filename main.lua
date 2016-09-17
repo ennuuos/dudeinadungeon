@@ -8,6 +8,8 @@ require('inventory')
 --TODO: Create map.lua
 --TODO: create player.lua
 
+debugMain = {"temp"}
+
 function love.load()
   map.init()
   enemy.new('dumb', 100, 100)
@@ -18,7 +20,7 @@ function love.update(dt)
 end
 
 function love.draw()
-  map.draw(testMap, 6, 6)
+  map.draw(map.testMap, 6, 6)
   player.draw()
   if love.keyboard.isDown("e") then
     inventory.draw()

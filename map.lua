@@ -1,21 +1,21 @@
 map = {
-}
-
-function map.init()
   testMap = {
     { true,  true,  true,  true,  true, true},
     { true, false, false, false, false, true},
-    { true, false, false, false, false, true},
-    { true, false, false, false, false, true},
-    { true, false, false, false, false, true},
+    { true, false, true, false, false, true},
+    { true, false, false, true, false, true},
+    { true, false, false, false,  false, true},
     { true,  true,  true,  true,  true, true}
   }
+}
+
+function map.init()
 end
 
-function map.draw(map)
-  for x = 1, #map do
-    for y = 1, #map[x] do
-      if map[x][y] then
+function map.draw(m)
+  for x = 1, #m do
+    for y = 1, #m[x] do
+      if m[x][y] then
         love.graphics.setColor(100, 100, 100, 255)
       else
         love.graphics.setColor(200, 200, 200, 255)
