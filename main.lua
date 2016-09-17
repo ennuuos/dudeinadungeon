@@ -5,6 +5,7 @@ require('player')
 require('enemy')
 require('map')
 require('inventory')
+require('ui')
 
 debugMain = {"temp"}
 
@@ -17,6 +18,11 @@ function love.update(dt)
   player.update(dt)
 end
 
+function love.keypressed(key)
+  inventory.keypressed(key)
+  ui.keypressed(key)
+end
+
 arcQueue = {}   --stores sword slash arcs
 function love.draw()
   map.draw(map.testMap, 6, 6)
@@ -26,8 +32,11 @@ function love.draw()
       arcQueue = {}
   end
   player.draw()
-  if love.keyboard.isDown("e") then
+  if inventory.display then
     inventory.draw()
+  end
+  if ui.statDisplay then
+    ui.drawStatusScreen()
   end
   enemy.drawAll()
   util.debugTable(debugMain)
