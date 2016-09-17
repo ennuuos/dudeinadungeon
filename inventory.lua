@@ -26,6 +26,15 @@ function inventory.mousepressed(x, y, button)
       inventory.mouseXOff = x - inventory.xOff
       inventory.mouseYOff = y - inventory.yOff
     end
+
+    if x >= inventory.xOff and x <= settings.inventory.height * (settings.inventory.tileSize + settings.inventory.border) + inventory.xOff
+    and y >= inventory.yOff and y <= settings.inventory.height * (settings.inventory.tileSize + settings.inventory.border) + inventory.yOff then
+        invX, invY = inventory.findSlot(x, y)
+        if (items[settings.inventory.contents[invY][invX]].interact) then
+            items[settings.inventory.contents[invY][invX]].interact()
+            settings.inventory.contents[invY][invX] = nil
+        end
+    end
   end
 end
 
@@ -81,4 +90,10 @@ function inventory.nextSlot()
         end
     end
     return false, false
+end
+
+function inventory.findSlot(x, y)
+    invX = math.ceil((x - inventory.xOff) / 33)
+    invY = math.ceil((y - inventory.yOff) / 33)
+    return invX, invY
 end

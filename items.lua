@@ -3,6 +3,9 @@ items = {
       love.graphics.newImage("assets/sword.png"),
       cooldown = 0.5
   },
+  ["hurtPotion"] = {
+      love.graphics.newImage("assets/potion-ball.png")
+  },
   size = 10,
   color = {r = 0, g = 255, b = 255}
 }
@@ -25,6 +28,10 @@ items["sword"].attack = function(x, y)
             end
         end
     end
+end
+
+items["hurtPotion"].interact = function()
+    player.damage(60)
 end
 
 function items.new(itemType, xPos, yPos)

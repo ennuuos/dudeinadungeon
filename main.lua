@@ -13,7 +13,7 @@ debugMain = {"temp"}
 function love.load()
   map.init()
   enemy.new('dumb', 100, 100)
-  items.new('sword', 180, 100)
+  items.new('hurtPotion', 180, 100)
 end
 
 function love.update(dt)
