@@ -14,17 +14,14 @@ enemy = {
     }
 }
 
-function enemy.new(type, xPos, yPos)
+function enemy.new(enemyType, xPos, yPos)
     i = #enemy + 1
 
     enemy[i] = {
         x = xPos,
         y = yPos,
-        health = enemy.types[type].health,
-        size = enemy.types[type].size,
-        speed = enemy.types[type].speed,
-        XPYield = enemy.types[type].XPYield,
-        color = enemy.types[type].color
+        health = enemy.types[enemyType].health,
+        type = enemyType
     }
 end
 
@@ -37,16 +34,26 @@ end
 
 function enemy.destroy(i)
     --TODO: death functions, e.g loot drops
-    player.XP = player.XP + enemy[i].XPYield
+    player.XP = player.XP + enemy.types[enemy[i].type].XPYield
     table.remove(enemy, i)
 end
 
+function enemy.update(dt, i)
+    --TODO: enemy update
+end
+function enemy.updateAll(dt)
+end
+
 function enemy.draw(i)
-    love.graphics.setColor(enemy[i].color.r, enemy[i]color.g, enemy[i]color.b)
-    love.graphics.rectangle('fill', enemy[i].x, enemy[i].y, enemy[i].size, enemy[i].size)
+    love.graphics.setColor(enemy.types[enemy[i].type].color.r, enemy.types[enemy[i].type].color.g, enemy.types[enemy[i].type].color.b)
+    love.graphics.rectangle('fill', enemy[i].x, enemy[i].y, enemy.types[enemy[i].type].size, enemy.types[enemy[i].type].size)
 end
 function enemy.drawAll()
-    for i, #enemy do
+    for i = 1, #enemy do
         enemy.draw(i)
     end
+end
+
+function enemy.center(i)
+    return enemy[i].x + enemy.types[enemy[i].type].size / 2, enemy[i].y + enemy.types[enemy[i].type]
 end
