@@ -22,16 +22,16 @@ function player.move(dt)
     moveSpeed = settings.player.baseSpeed --TODO: replace with value calculated from speed/agility stat #craig
     moveX = 0
     moveY = 0
-    if love.keyboard.isDown("d") then
+    if love.keyboard.isDown(settings.controls.move.right) then
         moveX = moveX + 1
     end
-    if love.keyboard.isDown("a") then
+    if love.keyboard.isDown(settings.controls.move.left) then
         moveX = moveX - 1
     end
-    if love.keyboard.isDown("s") then
+    if love.keyboard.isDown(settings.controls.move.down) then
         moveY = moveY + 1
     end
-    if love.keyboard.isDown("w") then
+    if love.keyboard.isDown(settings.controls.move.up) then
         moveY = moveY - 1
     end
     if moveX * moveY ~= 0 then

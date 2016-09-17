@@ -1,4 +1,12 @@
 settings = {
+  controls = {
+      move = {
+          up = "w",
+          left = "a",
+          down = "s",
+          right = "d"
+      }
+  },
   grid = {
     size = 50,
   },
