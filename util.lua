@@ -1,13 +1,13 @@
 util = {
   intersect = function(a, b)
-    return a.x + a.w > b.x and a.x < b.x + b.w and a.y + a.h > b.y and a.y < b.y + b.h
+    return a.x + a.width > b.x and a.x < b.x + b.width and a.y + a.height > b.y and a.y < b.y + b.height
   end,
   smallestIntersect = function(a, b)
     local checks = {
-      a.x + a.w - b.x,
-      b.x + b.w - a.x,
-      a.y + a.h - b.y,
-      b.y + b.h - a.y,
+      a.x + a.width - b.x,
+      b.x + b.width - a.x,
+      a.y + a.height - b.y,
+      b.y + b.height - a.y,
     }
     si = 1
     for i = 2, 4 do
