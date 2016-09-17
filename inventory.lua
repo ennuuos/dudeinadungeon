@@ -1,19 +1,21 @@
+require('items')
 inventory = {
 }
 
 function inventory.draw()
   --TODO: Get textures for items
-  love.graphics.setColor(0, 0, 0)
-  for x = 0, settings.inventory.width do
-    for y = 0, settings.inventory.height do
-      if settings.contents[x][y] ~= nil then
+  for x = 1, settings.inventory.width do
+    for y = 1, settings.inventory.height do
+      if settings.inventory.contents[x][y] ~= nil then
+        love.graphics.setColor(255, 255, 255)
         love.graphics.draw(
-          items[settings.contents[x][y]][1],
+          items[settings.inventory.contents[x][y]][1],
           x * (settings.inventory.tileSize + settings.inventory.border),
           y * (settings.inventory.tileSize + settings.inventory.border)
         )
       else
-        love.grahpics.rectangle(
+        love.graphics.setColor(100, 100, 100)
+        love.graphics.rectangle(
           "fill",
           x * (settings.inventory.tileSize + settings.inventory.border),
           y * (settings.inventory.tileSize + settings.inventory.border),
