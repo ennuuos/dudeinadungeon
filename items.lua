@@ -1,5 +1,8 @@
 items = {
-  ["sword"] = {love.graphics.newImage("assets/sword.png")},
+  ["sword"] = {
+      love.graphics.newImage("assets/sword.png"),
+      cooldown = 0.5
+  },
 }
 
 items["sword"].attack = function(x, y)

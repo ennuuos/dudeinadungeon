@@ -8,12 +8,16 @@ player = {
     x = 205,
     y = 205,
     size = 40,
+    weaponCooldown = 0
     --TODO: player stats #craig
 }
 
 function player.update(dt)
     if not dead then
         player.move(dt)
+        if player.weaponCooldown > 0 then
+            player.weaponCooldown = player.weaponCooldown - dt
+        end
     end
     actor.collideWithMap(player, map.testMap)
 end
@@ -52,8 +56,11 @@ function player.damage(damage)
 end
 
 function player.attack(x, y)
-    --TODO: replace this with attack for player's equipped weapon
-    items["sword"].attack(x,y)
+    if player.weaponCooldown <= 0  and not player.dead then
+        --TODO: replace this with attack for player's equipped weapon
+        items["sword"].attack(x,y)
+        player.weaponCooldown = items["sword"].cooldown
+    end
 end
 
 function player.level()
