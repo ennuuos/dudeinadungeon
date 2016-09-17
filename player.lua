@@ -33,12 +33,6 @@ function player.move(dt)
     if love.keyboard.isDown("w") then
         moveY = moveY - 1
     end
-    player.move(moveX, moveY, dt)
-    tx, ty = actor.collideWithMap(player, map.testMap)
-end
-
-function player.move(moveX, moveY, dt)
-    moveSpeed = settings.player.baseSpeed --TODO: replace with value calculated from speed/agility stat #craig
     if moveX * moveY ~= 0 then
         player.x = player.x + moveX * 0.707 * moveSpeed * dt
         player.y = player.y + moveY * 0.707 * moveSpeed * dt
