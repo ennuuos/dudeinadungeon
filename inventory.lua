@@ -30,9 +30,11 @@ function inventory.mousepressed(x, y, button)
     if x >= inventory.xOff and x <= settings.inventory.height * (settings.inventory.tileSize + settings.inventory.border) + inventory.xOff
     and y >= inventory.yOff and y <= settings.inventory.height * (settings.inventory.tileSize + settings.inventory.border) + inventory.yOff then
         invX, invY = inventory.findSlot(x, y)
-        if (items[settings.inventory.contents[invY][invX]].interact) then
-            items[settings.inventory.contents[invY][invX]].interact()
-            settings.inventory.contents[invY][invX] = nil
+        if settings.inventory.contents[invY][invX] then
+            if (items[settings.inventory.contents[invY][invX]].interact) then
+                items[settings.inventory.contents[invY][invX]].interact()
+                settings.inventory.contents[invY][invX] = nil
+            end
         end
     end
   end
