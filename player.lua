@@ -15,6 +15,7 @@ function player.update(dt)
     if not dead then
         player.move(dt)
     end
+    actor.collideWithMap(player, map.testMap)
 end
 
 function player.move(dt)

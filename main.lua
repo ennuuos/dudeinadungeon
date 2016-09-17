@@ -5,8 +5,6 @@ require('player')
 require('enemy')
 require('map')
 require('inventory')
---TODO: Create map.lua
---TODO: create player.lua
 
 debugMain = {"temp"}
 
