@@ -6,7 +6,8 @@ settings = {
     baseSpeed = 100,
   },
   inventory = {
-    tileSize = 64,
+    toggle = "e",
+    tileSize = 32,
     width = 10,
     height = 10,
     border = 1,
