@@ -12,8 +12,9 @@ player = {
 }
 
 function player.update(dt)
-
-    player.move(dt)
+    if not dead then
+        player.move(dt)
+    end
 end
 
 function player.move(dt)
@@ -43,7 +44,7 @@ end
 
 function player.damage(damage)
     player.health = player.health - damage
-    if player.health < 0 then
+    if player.health <= 0 then
         player.health = 0
         player.dead = true
     end
@@ -54,6 +55,8 @@ function player.level()
 end
 
 function player.draw()
-    love.graphics.setColor(0, 255, 0)
-    love.graphics.rectangle('fill', player.x + player.size / 2, player.y + player.size / 2, player.size, player.size)
+    if not player.dead then
+        love.graphics.setColor(0, 255, 0)
+        love.graphics.rectangle('fill', player.x, player.y, player.size, player.size)
+    end
 end
