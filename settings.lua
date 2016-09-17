@@ -5,6 +5,9 @@ settings = {
   player = {
     baseSpeed = 100,
   },
+  status = {
+    toggle = "q",
+  },
   inventory = {
     toggle = "e",
     tileSize = 32,
@@ -12,7 +15,7 @@ settings = {
     height = 10,
     border = 1,
     contents = {
-      {"sword", nil, nil, nil, nil, nil, nil, nil, nil, nil},
+      {"sword", "sword", nil, nil, nil, nil, nil, nil, nil, nil},
       {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
       {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},
       {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil},

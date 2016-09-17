@@ -5,6 +5,7 @@ require('player')
 require('enemy')
 require('map')
 require('inventory')
+require('ui')
 
 debugMain = {"temp"}
 
@@ -19,6 +20,7 @@ end
 
 function love.keypressed(key)
   inventory.keypressed(key)
+  ui.keypressed(key)
 end
 
 function love.draw()
@@ -26,6 +28,9 @@ function love.draw()
   player.draw()
   if inventory.display then
     inventory.draw()
+  end
+  if ui.statDisplay then
+    ui.drawStatusScreen()
   end
   enemy.drawAll()
 end
