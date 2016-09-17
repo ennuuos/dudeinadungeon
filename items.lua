@@ -1,3 +1,3 @@
 items = {
-  ["sword"] = image = love.graphics.newImage(""), name = "sword",
+  ["sword"] = {image = love.graphics.newImage("")},
 }

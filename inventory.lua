@@ -8,7 +8,7 @@ function inventory.draw()
     for y = 0, settings.inventory.height do
       if settings.contents[x][y] ~= nil then
         love.graphics.draw(
-          items[settings.contents[x][y]],
+          items[settings.contents[x][y]][1],
           x * (settings.inventory.tileSize + settings.inventory.border),
           y * (settings.inventory.tileSize + settings.inventory.border)
         )
