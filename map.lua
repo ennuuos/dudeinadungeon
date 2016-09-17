@@ -12,15 +12,15 @@ function map.init()
   }
 end
 
-function map.draw(map, width, height)
-  for x = 0, width do
-    for y = 0, height do
+function map.draw(map)
+  for x = 1, #map do
+    for y = 1, #map[x] do
       if map[x][y] then
         love.graphics.setColor(100, 100, 100, 255)
       else
         love.graphics.setColor(200, 200, 200, 255)
       end
-      love.graphics.rectangle("fill", x * settings.grid.size, y * settings.grid.size, settings.grid.size, settings.grid.size)
+      love.graphics.rectangle("fill", (x - 1) * settings.grid.size, (y - 1) * settings.grid.size, settings.grid.size, settings.grid.size)
     end
   end
 end
