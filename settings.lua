@@ -8,7 +8,8 @@ settings = {
       },
       ui = {
         inv = "e",
-        stats = "q"
+        stats = "q",
+        equip = "p"
       }
   },
   grid = {
