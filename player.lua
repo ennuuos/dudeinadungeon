@@ -21,7 +21,7 @@ function player.update(dt)
         player.pickupItems()
     end
     if player.XP >= player.XPToLevel then
-      player.level()
+      player.levelUp()
     end
     actor.collideWithMap(player, map.testMap)
 end
@@ -67,7 +67,7 @@ function player.attack(x, y)
     end
 end
 
-function player.level()
+function player.levelUp()
   player.XP = player.XP - player.XPToLevel
   player.level = player.level + 1
   --TODO: edit the leveling algorithm

@@ -2,7 +2,7 @@ require('items')
 inventory = {
   display = false,
   xOff = 0,
-  yOff = 0,
+  yOff = 32,
   dragging = false,
   mouseXOff = 0,
   mouseYOff = 0
@@ -21,7 +21,7 @@ end
 function inventory.mousepressed(x, y, button)
   if button == 1 and inventory.display then
     if x >= inventory.xOff and x <= settings.inventory.height * (settings.inventory.tileSize + settings.inventory.border) + inventory.xOff
-    and y >= inventory.yOff and y <= settings.inventory.width * (settings.inventory.tileSize + settings.inventory.border) + inventory.yOff then
+    and y >= inventory.yOff - settings.inventory.tileSize - settings.inventory.border and y <= inventory.yOff then
       inventory.dragging = true
       inventory.mouseXOff = x - inventory.xOff
       inventory.mouseYOff = y - inventory.yOff
@@ -44,6 +44,8 @@ function inventory.update(dt)
 end
 
 function inventory.draw()
+  love.graphics.setColor(160, 107, 0)
+  love.graphics.rectangle("fill", inventory.xOff, inventory.yOff - settings.inventory.tileSize - settings.inventory.border, settings.inventory.width * (settings.inventory.tileSize + settings.inventory.border), settings.inventory.tileSize)
   for x = 1, settings.inventory.width do
     for y = 1, settings.inventory.height do
       if settings.inventory.contents[x][y] ~= nil then
