@@ -12,6 +12,12 @@ player = {
 }
 
 function player.update(dt)
+
+    player.move(dt)
+end
+
+function player.move(dt)
+    moveSpeed = settings.player.baseSpeed --TODO: replace with value calculated from speed/agility stat #craig
     moveX = 0
     moveY = 0
     if love.keyboard.isDown("d") then
@@ -26,14 +32,9 @@ function player.update(dt)
     if love.keyboard.isDown("w") then
         moveY = moveY - 1
     end
-    player.move(moveX, moveY, dt)
-end
-
-function player.move(moveX, moveY, dt)
-    moveSpeed = settings.player.baseSpeed --TODO: replace with value calculated from speed/agility stat #craig
     if moveX * moveY ~= 0 then
-        player.x = player.x + moveX * 1.41 * moveSpeed * dt
-        player.y = player.y + moveY * 1.41 * moveSpeed * dt
+        player.x = player.x + moveX * 0.707 * moveSpeed * dt
+        player.y = player.y + moveY * 0.707 * moveSpeed * dt
     else
         player.x = player.x + moveX * moveSpeed * dt
         player.y = player.y + moveY * moveSpeed * dt
