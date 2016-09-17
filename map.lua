@@ -3,7 +3,7 @@ map = {
 
 function map.init()
   testMap = {
-    { true,  true,  true,  true,  true, true},
+    [0] = { true,  true,  true,  true,  true, true},
     { true, false, false, false, false, true},
     { true, false, false, false, false, true},
     { true, false, false, false, false, true},
@@ -13,8 +13,8 @@ function map.init()
 end
 
 function map.draw(map, width, height)
-  for x = 1, width do
-    for y = 1, height do
+  for x = 0, width do
+    for y = 0, height do
       if map[x][y] then
         love.graphics.setColor(100, 100, 100, 255)
       else
