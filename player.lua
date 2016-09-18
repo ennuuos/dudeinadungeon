@@ -13,7 +13,7 @@ player = {
 }
 
 function player.update(dt)
-    if not dead then
+    if not player.dead then
         player.move(dt)
         if player.weaponCooldown > 0 then
             player.weaponCooldown = player.weaponCooldown - dt
@@ -103,8 +103,6 @@ function player.draw()
         love.graphics.setColor(0, 255, 0)
         love.graphics.rectangle('fill', player.x, player.y, player.size, player.size)
     end
-    love.graphics.setColor(0, 255, 0)
-    love.graphics.rectangle('fill', player.x, player.y, player.size, player.size)
 end
 
 function player.center()

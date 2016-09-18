@@ -12,8 +12,11 @@ require('items')
 debugMain = {"temp"}
 
 function love.load()
+  math.randomseed(os.time())
   map.init()
-  enemy.new('dumb', 100, 100)
+  enemy.new('dumb', 75, 60)
+  enemy.new('dumb', 125, 60)
+  enemy.new('dumb', 175, 60)
   items.new('hurtPotion', 180, 100)
 end
 

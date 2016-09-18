@@ -9,6 +9,12 @@ enemy = {
                 r = 255,
                 g = 0,
                 b = 0
+            },
+            drops = {
+                --must sum to less than one
+                --if for some reason you really need to, ["nil"] = 0.5 will work
+                ["sword"] = 0.1,
+                ["hurtPotion"] = 0.4
             }
         }
     }
@@ -35,7 +41,21 @@ end
 function enemy.destroy(i)
     --TODO: death functions, e.g loot drops
     player.XP = player.XP + enemy.types[enemy[i].type].XPYield
+    enemy.dropLoot(i)
     table.remove(enemy, i)
+end
+function enemy.dropLoot(i)
+    rand = math.random()
+    minRange = 0
+    for k, v in pairs(enemy.types[enemy[i].type].drops) do
+        if minRange < rand and rand < v then
+            if k ~= "nil" then
+                items.new(k, enemy.center(i))
+            end
+            return
+        end
+        minRange = minRange + v
+    end
 end
 
 function enemy.update(dt, i)
